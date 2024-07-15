@@ -1,0 +1,162 @@
+<div class="container-fluid">
+  <div class="p-3 mb-2 bg-secondary-subtle text-emphasis-secondary">
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink="">ГЛАВНАЯ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/employer">ВАКАНСИИ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">КАНДИДАТЫ</a>
+      </li>
+      <router-outlet></router-outlet>
+    </ul>
+    <nav
+      style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
+      aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/employer">Вакансии</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Содать вакансию
+        </li>
+      </ol>
+      <router-outlet></router-outlet>
+    </nav>
+    <form class="was-validated">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <label for="categoryType" class="form-label">
+                Отрасль
+              </label>
+            </td>
+            <td>
+              <select class="form-select mb-2 ms-5" name="categoryTypeId" id="categoryTypeId"
+                [(ngModel)]="categoryTypeId" required aria-label="select example">
+                <option *ngFor="let categoryType of categoryTypes" [value]="categoryType.categoryTypeId">
+                  {{ categoryType.categoryName }}
+                </option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="jobTitle" class="form-label">
+                Наименование вакансии
+              </label>
+            </td>
+            <td>
+              <input type="text" class="form-control mb-2 ms-5" id="jobTitle" name="jobTitle" maxlength="35"
+                [(ngModel)]="jobTitle" placeholder="Программист в 1С" required />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="schedule" class="form-label">
+                График работы
+              </label>
+            </td>
+            <td>
+              <select class="form-select mb-2 ms-5" name="scheduleId" id="scheduleId" [(ngModel)]="scheduleId" required
+                aria-label="select example">
+                <option *ngFor="let schedule of schedules" [value]="schedule.scheduleId">
+                  {{ schedule.scheduleName }}
+                </option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="salary" class="form-label">
+                Заработная плата (руб/мес)
+              </label>
+            </td>
+            <td>
+              <input type="text" class="form-control mb-2 ms-5" id="salary" name="salary" [(ngModel)]="salary"
+                placeholder="123456" required />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="region" class="form-label">
+                Регион
+              </label>
+            </td>
+            <td>
+              <select class="form-select mb-2 ms-5" name="regionId" id="regionId" [(ngModel)]="selected"
+                (change)="click()" required aria-label="select example">
+                <option *ngFor="let region of regions" [value]="region.regionId">
+                  {{ region.regionName }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="city" class="form-label">
+                Город
+              </label>
+            </td>
+            <td>
+              <select class="form-select mb-2 ms-5" name="cityId" id="cityId" [(ngModel)]="cityId" required
+                aria-label="select example">
+                <option *ngFor="let city of Cities" [value]="city.cityId">
+                  {{ city.cityName }}
+                </option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="experience" class="form-label">
+                Требуемый опыт работы
+              </label>
+            </td>
+            <td>
+              <input type="text" class="form-control mb-2 ms-5" id="experience" name="experience"
+                [(ngModel)]="experience" placeholder="1 год" />
+            </td>
+          </tr>
+          <tr>
+            <td width="30%">
+              <label for="otherRequirements" class="form-label">
+                Требования к кандидату
+              </label>
+            </td>
+            <td>
+              <textarea type="text" class="form-control mb-2 ms-5" id="otherRequirements" name="otherRequirements"
+                rows="5" cols="30" maxlength="1024" [(ngModel)]="otherRequirements"
+                placeholder="Дополнительные требования к образованию (наличие сертификатов, дополнительных дипломов и т.п.)">
+          </textarea>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="contactName" class="form-label">
+                Контактные данные
+              </label>
+            </td>
+            <td>
+              <input type="text" class="form-control mb-2 ms-5" id="contactName" name="contactName"
+                [(ngModel)]="contactName" placeholder="ФИО - Телефон / E-mail" required />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <button (click)="addVacancy()" class="btn btn-primary">Создать</button>
+    </form>
+  </div>
+</div>

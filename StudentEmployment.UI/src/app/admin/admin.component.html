@@ -1,0 +1,303 @@
+<div class="container-fluid">
+    <div class="p-3 mb-2 bg-secondary-subtle text-emphasis-secondary">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" routerLink="">ГЛАВНАЯ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">КАНДИДАТЫ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" routerLink="/administration">АДМИНИСТРИРОВАНИЕ</a>
+            </li>
+            <router-outlet></router-outlet>
+        </ul>
+        <div class="d-grid gap-2 d-md-block">
+            <button type="button" class="btn btn-success float-none m-3" routerLink="/addvacancy">
+                ДОБАВИТЬ ВАКАНСИЮ +
+            </button>
+            <button type="button" class="btn btn-secondary float-none m-3" routerLink="/employers">
+                РАБОТОДАТЕЛИ
+            </button>
+            <button type="button" class="btn btn-secondary float-none m-3" routerLink="/requestvacancy">
+                ЗАЯВКИ НА ВАКНСИЮ
+            </button>
+            <router-outlet></router-outlet>
+        </div>
+        <hr>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <h2>
+                            Фильтр вакансий
+                        </h2>
+                    </th>
+                    <th>
+                        <input class="form-control ms-5" type="text" placeholder="Искать..." [(ngModel)]="searchText">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="container-md ms-1">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">
+                                            <label class="form-label">
+                                                <h5>
+                                                    Описание вакансии
+                                                </h5>
+                                            </label>
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label for="categoryType" class="form-label">Категория</label>
+                                        </td>
+                                        <td>
+                                            <select class="form-select mb-2 ms-3" name="categoryTypeId"
+                                                id="categoryTypeId" [(ngModel)]="categoryTypeId">
+                                                <option *ngFor="let categoryType of categoryTypes"
+                                                    [value]="categoryType.categoryTypeId">
+                                                    {{ categoryType.categoryName }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td>
+                                            <label for="jobTitle" class="form-label">Должность</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control mb-2 ms-3" id="jobTitle"
+                                                name="jobTitle" maxlength="35" [(ngModel)]="jobTitle" />
+                                        </td>
+                                    </tr> -->
+                                    <tr>
+                                        <td>
+                                            <label for="schedule" class="form-label">График</label>
+                                        </td>
+                                        <td>
+                                            <select class="form-select mb-2 ms-3" name="scheduleId" id="scheduleId"
+                                                [(ngModel)]="scheduleId">
+                                                <option *ngFor="let schedule of schedules"
+                                                    [value]="schedule.scheduleId">
+                                                    {{ schedule.scheduleName }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    <tr>
+                                        <td>
+                                            <label for="salary" class="form-label">Минимальный размер <br> З/П
+                                                (руб./мес.)</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control mb-2 ms-3" id="salary" name="salary"
+                                                [(ngModel)]="salary" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">
+                                            <label class="form-label">
+                                                <h5>
+                                                    Местоположение работы
+                                                </h5>
+                                            </label>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="region" class="form-label">Регион</label>
+                                        </td>
+                                        <td>
+                                            <select class="form-select mb-2 ms-3" name="regionId" id="regionId"
+                                                [(ngModel)]="selected" (change)="click()">
+                                                <option *ngFor="let region of regions" value="{{region.regionId}}">
+                                                    {{ region.regionName }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="city" class="form-label">Город</label>
+                                        </td>
+                                        <td>
+                                            <select class="form-select mb-2 ms-3" name="cityId" id="cityId"
+                                                [(ngModel)]="cityId">
+                                                <option *ngFor="let city of Cities" [value]="city.cityId">
+                                                    {{ city.cityName }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row g-3">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary mb-3"
+                                        (click)="filterVacancy()">ПРИМЕНИТЬ</button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-secondary mb-3"
+                                        (click)="clfilterVacancy()">ОЧИСТИТЬ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+
+                        <div class="container-lg ms-5" *ngIf="filterfalse">
+
+                            <table class="table align-middle vertical-align-center">
+                                <thead>
+                                    <tr class="table align-middle vertical-align-center">
+                                        <th scope="col">
+                                            <h6><b>Должность</b></h6>
+                                        </th>
+                                        <th scope="col">
+                                            <h6><b>Название организации</b></h6>
+                                        </th>
+                                        <th scope="col">
+                                            <h6><b>Оплата</b></h6>
+                                        </th>
+                                        <th scope="col">
+                                            <h6><b>Город</b></h6>
+                                        </th>
+                                        <th scope="col" class="a">
+                                            <h6><b>Тип занятости</b></h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let vacancy of Array | search: searchText">
+                                    <tr data-bs-toggle="modal" data-bs-target="#openVacancyModal"
+                                        (click)="openVacancy(vacancy)" *ngIf="vacancy.vacancyStatus == true">
+                                        <td>
+                                            {{ vacancy.jobTitle }}
+                                        </td>
+                                        <td>
+                                            <div *ngFor="let employer of employers">
+                                                <div *ngIf="vacancy.employerId == employer.employerId">
+                                        <td>
+                                            {{ employer.companyName }}
+                                        </td>
+                        </div>
+    </div>
+    </td>
+    <td>
+        {{ vacancy.salary }}
+    </td>
+    <td>
+        <div *ngFor="let city of cities">
+            <div *ngIf="vacancy.cityId == city.cityId">
+    <td>
+        {{ city.cityName }}
+    </td>
+</div>
+</div>
+</td>
+<td>
+    <div *ngFor="let schedule of schedules">
+        <div *ngIf="vacancy.scheduleId == schedule.scheduleId">
+<td>
+    {{ schedule.scheduleName }}
+</td>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="container-lg ms-5" *ngIf="filtertrue">
+
+    <table class="table align-middle vertical-align-center">
+        <thead>
+            <tr class="table align-middle vertical-align-center">
+                <th scope="col">
+                    <h6><b>Должность</b></h6>
+                </th>
+                <th scope="col">
+                    <h6><b>Организация</b></h6>
+                </th>
+                <th scope="col">
+                    <h6><b>Зарплата</b></h6>
+                </th>
+                <th scope="col">
+                    <h6><b>Город</b></h6>
+                </th>
+                <th scope="col" class="a">
+                    <h6><b>График работы</b></h6>
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let vacancy of vacancies | search: searchText">
+            <tr data-bs-toggle="modal" data-bs-target="#openVacancyModal" (click)="openVacancy(vacancy)"
+                *ngIf="vacancy.vacancyStatus == true">
+                <td>
+                    {{ vacancy.jobTitle }}
+                </td>
+                <td>
+                    <div *ngFor="let employer of employers">
+                        <div *ngIf="vacancy.employerId == employer.employerId">
+                <td>
+                    {{ employer.companyName }}
+                </td>
+</div>
+</div>
+</td>
+<td>
+    {{ vacancy.salary }} руб/мес
+</td>
+<td>
+    <div *ngFor="let city of cities">
+        <div *ngIf="vacancy.cityId == city.cityId">
+<td>
+    {{ city.cityName }}
+</td>
+</div>
+</div>
+</td>
+<td>
+    <div *ngFor="let schedule of schedules">
+        <div *ngIf="vacancy.scheduleId == schedule.scheduleId">
+<td>
+    {{ schedule.scheduleName }}
+</td>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<div class="modal fade" id="openVacancyModal" tabindex="-1" aria-labelledby="openVacancyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="openVacancyModalLabel">Просмотр вакансии</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-check-vacancy [vacancy]="vacancyToOpen"></app-check-vacancy>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>

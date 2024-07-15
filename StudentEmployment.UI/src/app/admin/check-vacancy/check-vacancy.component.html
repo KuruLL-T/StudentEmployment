@@ -1,0 +1,194 @@
+<div *ngIf="vacancy">
+    <table class="table align-middle vertical-align-center">
+        <tbody>
+            <tr>
+                <td>
+                    <label for="categoryTypeId" class="form-label">
+                        Отрасль
+                    </label>
+                </td>
+                <td>
+                    <div *ngFor="let type of CategoryTypeList$ | async">
+                        <div *ngIf="vacancy.categoryTypeId == type.categoryTypeId">
+                <td>{{ type.categoryName }}</td>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+    <td>
+        <label for="jobTitle" class="form-label">
+            Наименование вакансии
+        </label>
+    </td>
+    <td>
+        {{ vacancy.jobTitle }}
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="jobTitle" class="form-label">
+            Организация
+        </label>
+    </td>
+    <td>
+        <div class="accordion accordion-flush" id="accordionEmployer" *ngFor="let type of EmployerList$ | async">
+            <div class="accordion-item" *ngIf="vacancy.employerId == type.employerId">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    {{ type.companyName }}
+                </button>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionEmployer">
+                    <div class="accordion-body">
+                        <table class="table align-middle vertical-align-center">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="salary" class="form-label">
+                                            Адрес:
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div *ngFor="let type of EmployerList$ | async">
+                                            <div *ngIf="vacancy.employerId === type.employerId">
+                                    <td>{{ type.address }}</td>
+                    </div>
+                </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="salary" class="form-label">
+            Представитель:
+        </label>
+    </td>
+    <td>
+        <div *ngFor="let type of EmployerList$ | async">
+            <div *ngIf="vacancy.employerId === type.employerId">
+    <td>{{ type.contactName }}</td>
+    </div>
+    </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="salary" class="form-label">
+            Номер телефона:
+        </label>
+    </td>
+    <td>
+        <div *ngFor="let type of EmployerList$ | async">
+            <div *ngIf="vacancy.employerId === type.employerId">
+    <td>{{ type.phoneNumber }}</td>
+    </div>
+    </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="salary" class="form-label">
+            Эл. Почта:
+        </label>
+    </td>
+    <td>
+        <div *ngFor="let type of EmployerList$ | async">
+            <div *ngIf="vacancy.employerId === type.employerId">
+                {{ type.email }}
+            </div>
+        </div>
+    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+    <td>
+        <label for="region" class="form-label">
+            Регион
+        </label>
+    </td>
+    <td>
+        <div *ngFor="let type of RegionList$ | async">
+            <div *ngIf="vacancy.regionId == type.regionId">
+    <td>{{ type.regionName }}</td>
+    </div>
+    </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="city" class="form-label">
+            Город
+        </label>
+    </td>
+    <td>
+        <div *ngFor="let type of CityList$ | async">
+            <div *ngIf="vacancy.cityId == type.cityId">
+    <td>{{ type.cityName }}</td>
+    </div>
+    </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="experience" class="form-label">
+            Требуемый опыт работы
+        </label>
+    </td>
+    <td>
+        {{ vacancy.experience }}
+    </td>
+</tr>
+<tr>
+    <td width="30%">
+        <label for="otherRequirements" class="form-label">
+            Требования к кандидату
+        </label>
+    </td>
+    <td>
+        {{ vacancy.otherRequirements }}
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="schedule" class="form-label">
+            График работы
+        </label>
+    </td>
+    <td>
+        <div *ngFor="let type of ScheduleList$ | async">
+            <div *ngIf="vacancy.scheduleId == type.scheduleId">
+    <td>{{ type.scheduleName }}</td>
+    </div>
+    </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="salary" class="form-label">
+            Заработная плата (руб/мес)
+        </label>
+    </td>
+    <td>
+        {{ vacancy.salary }}
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="contactName" class="form-label">
+            Контактные данные
+        </label>
+    </td>
+    <td>
+        {{ vacancy.contactName }}
+    </td>
+</tr>
+</tbody>
+</table>
+<button type="button" class="btn btn-danger" (click)="deleteVacancy(vacancy)">Удалить</button>
+</div>

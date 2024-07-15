@@ -1,0 +1,132 @@
+<hr>
+<form class="was-validated">
+  <div *ngIf="vacancy">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <label for="categoryType" class="form-label">
+              Отрасль
+            </label>
+          </td>
+          <td>
+            <select class="form-select mb-2 ms-5" name="categoryTypeId" id="categoryTypeId"
+              [(ngModel)]="vacancy.categoryTypeId" required aria-label="select example">
+              <option *ngFor="let type of CategoryTypeList$ | async" [value]="type.categoryTypeId">
+                {{ type.categoryName }}
+              </option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label for="jobTitle" class="form-label">
+              Наименование вакансии
+            </label>
+          </td>
+          <td>
+            <input type="text" class="form-control mb-2 ms-5" id="jobTitle" name="jobTitle" maxlength="35"
+              [(ngModel)]="vacancy.jobTitle" placeholder="Программист в 1С" required />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="schedule" class="form-label">
+              График работы
+            </label>
+          </td>
+          <td>
+            <select class="form-select mb-2 ms-5" name="scheduleId" id="scheduleId" [(ngModel)]="vacancy.scheduleId"
+              required aria-label="select example">
+              <option *ngFor="let type of ScheduleList$ | async" [value]="type.scheduleId">
+                {{ type.scheduleName }}
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="salary" class="form-label">
+              Заработная плата (руб/мес)
+            </label>
+          </td>
+          <td>
+            <input type="text" class="form-control mb-2 ms-5" id="salary" name="salary" [(ngModel)]="vacancy.salary"
+              placeholder="123456" required />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="region" class="form-label">Регион</label>
+          </td>
+          <td>
+            <select class="form-select mb-2 ms-5" name="regionId" id="regionId" [(ngModel)]="selected"
+              (change)="click()">
+              <option *ngFor="let type of RegionList$ | async" value="{{type.regionId}}">
+                {{ type.regionName }}
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="city" class="form-label">Город</label>
+          </td>
+          <td>
+            <select class="form-select mb-2 ms-5" name="cityId" id="cityId" [(ngModel)]="vacancy.cityId">
+              <option *ngFor="let type of Cities" [value]="type.cityId">
+                {{ type.cityName }}
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="experience" class="form-label">
+              Требуемый опыт работы
+            </label>
+          </td>
+          <td>
+            <input type="text" class="form-control mb-2 ms-5" id="experience" name="experience"
+              [(ngModel)]="vacancy.experience" placeholder="1 год" />
+          </td>
+        </tr>
+        <tr>
+          <td width="30%">
+            <label for="otherRequirements" class="form-label">
+              Требования к кандидату
+            </label>
+          </td>
+          <td>
+            <textarea type="text" class="form-control mb-2 ms-5" id="otherRequirements" name="otherRequirements"
+              rows="5" cols="30" maxlength="1024" [(ngModel)]="vacancy.otherRequirements"
+              placeholder="Дополнительные требования к образованию (наличие сертификатов, дополнительных дипломов и т.п.)">
+          </textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="contactName" class="form-label">
+              Контактные данные
+            </label>
+          </td>
+          <td>
+            <input type="text" class="form-control mb-2 ms-5" id="contactName" name="contactName"
+              [(ngModel)]="vacancy.contactName" placeholder="ФИО - Телефон / E-mail" required />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row g-3">
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary mb-3" (click)="updateVacancy(vacancy)"
+          *ngIf="vacancy.vacancyId">Сохранить</button>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-danger mb-3" (click)="deleteVacancy(vacancy)"
+          *ngIf="vacancy.vacancyId">Удалить</button>
+      </div>
+    </div>
+  </div>
+</form>

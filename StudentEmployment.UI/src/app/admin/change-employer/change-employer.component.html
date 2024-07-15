@@ -1,0 +1,74 @@
+<hr>
+<form class="was-validated">
+    <div *ngIf="employer">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="companyName" class="form-label">
+                            Организация
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control mb-2 ms-5" id="companyName" name="companyName"
+                            [(ngModel)]="employer.companyName" placeholder="ООО Организация" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="address" class="form-label">
+                            Адрес
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control mb-2 ms-5" id="address" name="address"
+                            [(ngModel)]="employer.address" placeholder="1 год" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="contactName" class="form-label">
+                            Представитель
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control mb-2 ms-5" id="contactName" name="contactName"
+                            [(ngModel)]="employer.contactName" placeholder="Фамилия И. О." required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="phoneNumber" class="form-label">
+                            Номер телефона
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control mb-2 ms-5" id="phoneNumber" name="phoneNumber"
+                            [(ngModel)]="employer.phoneNumber" placeholder="+7 (777) 777-77-77" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email" class="form-label">
+                            E-mail
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control mb-2 ms-5" id="email" name="email"
+                            [(ngModel)]="employer.email" placeholder="Эл. Почта" required />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row g-3">
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary mb-3" (click)="changeEmployer(employer)"
+                    *ngIf="employer.employerId">Сохранить</button>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-danger mb-3" (click)="deleteEmployer(employer)"
+                    *ngIf="employer.employerId">Удалить</button>
+            </div>
+        </div>
+    </div>
+</form>

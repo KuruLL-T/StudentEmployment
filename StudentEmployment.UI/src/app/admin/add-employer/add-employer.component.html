@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <div class="p-3 mb-2 bg-secondary-subtle text-emphasis-secondary">
+        <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" routerLink="">ГЛАВНАЯ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">КАНДИДАТЫ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" routerLink="/admin">АДМИНИСТРИРОВАНИЕ</a>
+            </li>
+            <router-outlet></router-outlet>
+        </ul>
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
+            aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a routerLink="/employers">Работодатели</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Добавить работодателя
+                </li>
+            </ol>
+            <router-outlet></router-outlet>
+        </nav>
+        <form class="was-validated">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="companyName" class="form-label">
+                                Наименование организации
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control mb-2 ms-5" id="companyName" name="companyName"
+                                maxlength="20" [(ngModel)]="companyName" placeholder="ООО Орагнизация" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="address" class="form-label">
+                                Адрес
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control mb-2 ms-5" id="address" name="address"
+                                [(ngModel)]="address" placeholder="город, улица, дом, помещение" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="contactName" class="form-label">
+                                Представитель организации
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control mb-2 ms-5" id="contactName" name="contactName"
+                                [(ngModel)]="contactName" placeholder="Фамилия И. О." required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="phoneNumber" class="form-label">
+                                Телефон
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control mb-2 ms-5" id="phoneNumber" name="phoneNumber"
+                                [(ngModel)]="phoneNumber" placeholder="+7 (777) 777-77-77" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="email" class="form-label">
+                                E-mail
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control mb-2 ms-5" id="email" name="email"
+                                [(ngModel)]="email" placeholder="Эл. Почта" required />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <button (click)="addEmployer()" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+</div>

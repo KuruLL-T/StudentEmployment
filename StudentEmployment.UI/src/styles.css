@@ -1,0 +1,127 @@
+/* #logo {
+    border-radius: 60%;
+    padding: auto;
+    text-align: center;
+    margin: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .PGTU {
+    padding: auto;
+    text-align: center;
+    margin: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: auto;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-weight: bold;
+    color: #57595b;
+    text-shadow: 1px 1px 1px rgb(255, 255, 255);
+    font-size: large;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    max-width: 100%;
+  
+    // border: 2px solid red;
+  }
+  .containerbody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    max-width: 100%;
+  }
+  .head {
+    background-color: #0b767d;
+  }
+  .body {
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+  .col {
+    padding: auto;
+    text-align: center;
+    .left {
+      border: 2px solid red;
+    }
+    .right {
+      border: 2px solid blue;
+    }
+  }
+  
+  .volgatech {
+    padding: auto;
+    text-align: center;
+    margin: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: auto;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-weight: bold;
+    font-size: xx-large;
+    color: #c39d57;
+    text-shadow: 1px 1px 1px rgb(255, 255, 255);
+  }
+  
+  @media (max-width: 1400px) {
+    .PGTU {
+      display: none;
+    }
+    .volgatech {
+      display: none;
+    }
+  }
+  
+  .roombuilding {
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    max-width: 100%;
+    font-weight: bold;
+    background-color: #dcdcdc;
+    text-shadow: 1px 1px 1px rgb(255, 255, 255);
+  }
+  
+  #dropdownMenuButton1 {
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  .scrolleft {
+    height: 400px;
+    width: auto;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+  .scrolright {
+    height: 250px;
+    width: auto;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+  .room_link {
+    color: rebeccapurple;
+  }
+  
+  .cursorPointer {
+    cursor: pointer;
+  }
+  
+  #columright {
+    margin-top: 0;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    text-align: left;
+    margin-left: 30px;
+  }
+ */

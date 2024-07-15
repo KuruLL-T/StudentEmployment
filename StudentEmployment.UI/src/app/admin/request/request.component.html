@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <div class="p-3 mb-2 bg-secondary-subtle text-emphasis-secondary">
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" routerLink="">ГЛАВНАЯ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">КАНДИДАТЫ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/admin">АДМИНИСТРИРОВАНИЕ</a>
+      </li>
+      <router-outlet></router-outlet>
+    </ul>
+    <nav
+      style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
+      aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/admin">Администрирование</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Заявки на вакансию
+        </li>
+      </ol>
+      <router-outlet></router-outlet>
+    </nav>
+
+    <div class="container-lg ms-1">
+      <table class="table align-middle vertical-align-center">
+        <thead>
+          <tr class="table align-middle vertical-align-center">
+            <th scope="col">
+              <h6><b>Вакансия</b></h6>
+            </th>
+            <th scope="col">
+              <h6><b>Дата изменения</b></h6>
+            </th>
+            <th scope="col">
+              <h6><b></b></h6>
+            </th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let vacancy of vacancies">
+          <tr *ngIf="vacancy.vacancyStatus == false">
+            <td>{{ vacancy.jobTitle }}</td>
+            <td>{{ vacancy.lastUpdate | date:'dd.MM.yyyy' }}</td>
+            <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                        data-bs-target="#openVacancyModal" (click)="openVacancy(vacancy)">Просмотерть вакансию</button>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-secondary" (click)="editVacancy(vacancy)">МОДЕРАЦИЯ</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <app-change-vacancy [vacancy]="vacancyToEdit" (vacanciesUpdated)="changeVacancyList($event)"></app-change-vacancy>
+
+      <div class="modal fade" id="openVacancyModal" tabindex="-1" aria-labelledby="openVacancyModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="openVacancyModalLabel">Просмотр вакансии</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <app-open-vacancy [vacancy]="vacancyToOpen"></app-open-vacancy>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
